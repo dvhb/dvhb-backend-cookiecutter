@@ -1,0 +1,16 @@
+databases:
+  default:
+    database: Имя базы
+    host:
+    port:
+    user:
+    password:
+
+logging:
+  root:
+    handlers: [console, sentry]
+  handlers:
+    sentry:
+      dsn:
+      level: ERROR
+      class: raven.handlers.logging.SentryHandler

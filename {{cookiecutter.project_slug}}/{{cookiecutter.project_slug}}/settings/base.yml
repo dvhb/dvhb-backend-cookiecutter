@@ -1,0 +1,92 @@
+app:
+  name: &appname {{cookiecutter.project_slug}}
+  env: dev
+  debug: true
+  cors: true
+
+databases:
+  default:
+    database: *appname
+
+redis:
+  default:
+    host: 127.0.0.1
+    port: 6379
+    db: 0
+    prefix: *appname
+    minsize: 5
+    maxsize: 10
+  sessions:
+    host: 127.0.0.1
+    port: 6379
+    db: 1
+    prefix: *appname
+    minsize: 5
+    maxsize: 10
+
+path:
+  templates:
+    - templates
+  static: static
+  media: ../media
+
+elasticsearch:
+  - host: 127.0.0.1
+    port: 9200
+    index: *appname
+    refresh: false
+
+ws:
+  uri:
+  channel: *appname
+
+mailer:
+  backend: mailer.dummy.Mailer
+  from_email: no-replay@{{cookiecutter.project_slug}}.dvhb.ru
+  mta:
+    host: localhost
+  templates: {{cookiecutter.project_slug}}
+
+logging:
+  version: 1
+  disable_existing_loggers: false
+  root:
+    level: INFO
+    handlers: [console]
+  formatters:
+    verbose:
+      format: '[%(asctime)s] %(levelname)s: %(name)s: %(message)s'
+  handlers:
+    console:
+      level: ERROR
+      class: logging.StreamHandler
+      formatter: verbose
+    console_debug:
+      level: DEBUG
+      class: logging.StreamHandler
+      formatter: verbose
+  loggers:
+    common.db:
+      handlers: []
+      level: DEBUG
+      propagate: false
+    django:
+      handlers: []
+      level: ERROR
+      propagate: true
+    django.request:
+      handlers: []
+      level: ERROR
+      propagate: true
+    invoke:
+      handlers: [console]
+      level: ERROR
+      propagate: false
+    asyncio:
+      level: CRITICAL
+      handlers: []
+      propagate: true
+    aiohttp.access:
+      level: DEBUG
+      handlers: []
+      propagate: true
