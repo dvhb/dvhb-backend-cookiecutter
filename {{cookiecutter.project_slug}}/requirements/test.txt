@@ -1,0 +1,8 @@
+-r ./base.txt
+pytest-aiohttp
+pytest-cov
+pytest-pep8
+pytest-mock
+pytest-timeout
+pytest-django
+flake8
