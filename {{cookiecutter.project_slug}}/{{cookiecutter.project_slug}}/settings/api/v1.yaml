@@ -1,0 +1,16 @@
+swagger: '2.0'
+
+basePath: /api/1
+
+info:
+  title: {{ cookiecutter.project_name }} API
+  version: '1.0'
+  description: API версии 1.0
+
+tags:
+  - name: user
+    description: Пользователи
+
+paths:
+  /user:
+    - $include: users/swagger/user.yaml
