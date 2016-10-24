@@ -1,0 +1,54 @@
+swagger: '2.0'
+
+paths:
+  /login:
+    post:
+      tags:
+        - user
+      summary: Вход
+      description: При успешной авторизации выдает api_key
+
+      consumes:
+        - application/json
+        - application/x-www-form-urlencoded
+
+      produces:
+        - application/json
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+
+      parameters:
+
+        - name: email
+          in: formData
+          description: Электронная почта
+          required: true
+          type: string
+          format: email
+
+        - name: password
+          in: formData
+          description: Пароль
+          required: true
+          type: string
+          format: passsword
+
+  /logout:
+    post:
+      tags:
+        - user
+      summary: Выход
+      description: Деактивирует api_key
+
+      produces:
+      - application/json
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
