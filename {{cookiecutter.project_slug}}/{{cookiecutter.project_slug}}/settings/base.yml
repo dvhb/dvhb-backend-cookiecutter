@@ -27,7 +27,7 @@ redis:
 path:
   templates:
     - templates
-  static: static
+  static: ../static
   media: ../media
 
 elasticsearch:
