@@ -66,3 +66,8 @@ class Application(web.Application):
     async def cleanup_database(self):
         async with self['db']:
             pass
+
+
+def init(args):
+    app = Application()
+    return app
