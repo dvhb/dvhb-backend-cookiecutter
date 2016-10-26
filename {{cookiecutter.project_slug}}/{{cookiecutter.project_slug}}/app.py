@@ -57,7 +57,7 @@ class Application(web.Application):
             loop=self.loop)
 
     async def cleanup_redis(self):
-        await self['redis'].quit()
+        await self['redis'].clear()
 
     async def startup_database(self):
         dbparams = self.config.databases.default.config
