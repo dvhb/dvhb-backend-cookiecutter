@@ -18,12 +18,12 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 from dvhb_hybrid.config import load_conf, db_to_settings
 
-base_path = os.path.join(PROJECT_DIR, 'settings', 'base.yml')
+PROJECT_SLUG = '{{cookiecutter.project_slug.upper()}}'
 config = load_conf(
-    base_path=base_path,
-    env_path=PROJECT_DIR,
-    env_prefix=PROJECT_DIR,
-    system_prefix='/etc/ruam',
+    base_path=os.path.join(PROJECT_DIR, 'settings', 'base.yml'),
+    env_path=PROJECT_SLUG + '_CONF',
+    system_prefix='/etc/{{cookiecutter.project_slug}}',
+    env_prefix=PROJECT_SLUG,
 )
 
 
