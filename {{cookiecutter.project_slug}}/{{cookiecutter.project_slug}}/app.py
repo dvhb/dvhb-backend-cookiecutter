@@ -7,6 +7,7 @@ import jinja2
 from aiohttp import web
 from aiohttp_apiset import SwaggerRouter
 from dvhb_hybrid.config import absdir, dirs
+from dvhb_hybrid import files
 
 from {{cookiecutter.project_slug}}.settings import config, PROJECT_DIR
 
@@ -19,6 +20,14 @@ class Application(web.Application):
                 '{{cookiecutter.project_slug}}'
             ])
             router.include('v1.yaml')
+
+            router.add_search_dir(
+                os.path.dirname(os.path.dirname(files.__file__)))
+            router.include(
+                'files/swagger/routes.yaml', basePath='/api/1',
+                operationId_mapping=files.opid,
+            )
+
             kwargs['router'] = router
         self.config = config
 
