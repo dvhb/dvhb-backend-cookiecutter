@@ -6,8 +6,10 @@ import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 from aiohttp_apiset import SwaggerRouter
+from aiohttp_apiset.middlewares import jsonify
 from dvhb_hybrid.config import absdir, dirs
 from dvhb_hybrid import files
+from dvhb_hybrid.amodels import AppModels
 
 from {{cookiecutter.project_slug}}.settings import config, PROJECT_DIR
 
@@ -18,7 +20,7 @@ class Application(web.Application):
             router = SwaggerRouter(search_dirs=[
                 '{{cookiecutter.project_slug}}/settings/api',
                 '{{cookiecutter.project_slug}}'
-            ])
+            ], default_validate=True)
             router.include('v1.yaml')
 
             router.add_search_dir(
@@ -30,6 +32,9 @@ class Application(web.Application):
 
             kwargs['router'] = router
         self.config = config
+
+        middlewares = kwargs.setdefault('middlewares', [])
+        middlewares.append(jsonify)
 
         super().__init__(**kwargs)
 
@@ -71,6 +76,7 @@ class Application(web.Application):
     async def startup_database(self):
         dbparams = self.config.databases.default.config
         self['db'] = await aiopg.sa.create_engine(**dbparams)
+        self.models = AppModels(self)
 
     async def cleanup_database(self):
         async with self['db']:
@@ -80,3 +86,7 @@ class Application(web.Application):
 def init(args):
     app = Application()
     return app
+
+
+if __name__ == '__main__':
+    web.run_app(init(None))
