@@ -1,3 +1,4 @@
+import collections
 import os
 
 import aiopg.sa
@@ -37,6 +38,7 @@ class Application(web.Application):
         middlewares.append(jsonify)
 
         super().__init__(**kwargs)
+        self['state'] = collections.Counter()
 
         aiohttp_jinja2.setup(
             self, loader=jinja2.FileSystemLoader(
