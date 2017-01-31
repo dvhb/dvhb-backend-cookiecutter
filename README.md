@@ -7,4 +7,4 @@
 
 Создание проекта из шаблона:
 
-    $ cookiecutter git@git.dvhb.ru:devhub-libs/dvhb-backend-cookiecutter.git
+    $ cookiecutter git@github.com:dvhbru/dvhb-backend-cookiecutter.git
