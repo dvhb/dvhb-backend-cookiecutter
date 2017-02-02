@@ -1,0 +1,14 @@
+invoke==0.13.0
+
+# Asyncio
+aiohttp==1.2.0
+aiohttp-apiset==0.3.4
+aiohttp-jinja2==0.8.0
+aiopg==0.13.0
+aioredis==0.2.9
+
+# Django
+Django==1.10.5
+
+# DVHB
+git+https://github.com/dvhbru/dvhb-hybrid@0.0.3

@@ -1,0 +1,23 @@
+swagger: '2.0'
+
+basePath: /api/1
+
+info:
+  title: {{ cookiecutter.project_name }} API
+  version: '1.0'
+  description: API версии 1.0
+
+tags:
+- name: users
+
+securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    name: API-KEY
+    in: header
+
+paths:
+{% if cookiecutter.users_app == 'y' %}
+  /user:
+  - $include: users/swagger/user.yaml
+{% endif %}

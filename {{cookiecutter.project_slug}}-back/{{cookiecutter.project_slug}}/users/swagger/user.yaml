@@ -1,0 +1,54 @@
+paths:
+  '/login':
+    post:
+      $handler: {{cookiecutter.project_slug}}.users.views.login
+      $validate: true
+      tags:
+      - user
+      summary: Login
+      description: Returns api key if success
+
+      consumes:
+      - application/json
+      - application/x-www-form-urlencoded
+
+      produces:
+      - application/json
+
+      responses:
+        200:
+          description: OK
+          type: object
+          properties:
+            api_key:
+              type: string
+
+      parameters:
+      - name: email
+        in: formData
+        description: Email
+        required: true
+        type: string
+        format: email
+
+      - name: password
+        in: formData
+        description: Password
+        required: true
+        type: string
+        format: passsword
+
+  '/logout':
+    post:
+      $handler: {{cookiecutter.project_slug}}.users.views.logout
+      tags:
+      - user
+      summary: Logout
+      description: Deactivate api key
+
+      security:
+      - UserSecurity: []
+
+      responses:
+        200:
+          description: OK

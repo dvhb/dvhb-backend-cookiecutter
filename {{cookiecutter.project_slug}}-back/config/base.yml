@@ -30,23 +30,6 @@ path:
   static: ../static
   media: ../media
 
-elasticsearch:
-  - host: 127.0.0.1
-    port: 9200
-    index: *appname
-    refresh: false
-
-ws:
-  uri:
-  channel: *appname
-
-mailer:
-  backend: mailer.dummy.Mailer
-  from_email: no-replay@{{cookiecutter.project_slug}}.dvhb.ru
-  mta:
-    host: localhost
-  templates: {{cookiecutter.project_slug}}
-
 logging:
   version: 1
   disable_existing_loggers: false
