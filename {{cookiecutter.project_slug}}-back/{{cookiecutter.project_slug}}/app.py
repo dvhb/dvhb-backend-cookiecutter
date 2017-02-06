@@ -11,7 +11,7 @@ from aiohttp_apiset.middlewares import jsonify
 from dvhb_hybrid.config import absdir, dirs
 from dvhb_hybrid.amodels import AppModels
 
-from .settings import config, PROJECT_DIR
+from .settings import config, BASE_DIR
 
 import {{cookiecutter.project_slug}}
 AppModels.import_all_models_from_packages({{cookiecutter.project_slug}})
@@ -37,15 +37,15 @@ class Application(web.Application):
 
         aiohttp_jinja2.setup(
             self, loader=jinja2.FileSystemLoader(
-                dirs(self.config.path.templates, base_dir=PROJECT_DIR)),
+                dirs(self.config.path.templates, base_dir=BASE_DIR)),
         )
         cls = type(self)
-        static_root = absdir(config.path.static, base_dir=PROJECT_DIR)
+        static_root = absdir(config.path.static, base_dir=BASE_DIR)
         if not os.path.exists(static_root):
             os.makedirs(static_root)
         self.router.add_static('/static/', static_root, name='static')
 
-        media_root = absdir(config.path.media, base_dir=PROJECT_DIR)
+        media_root = absdir(config.path.media, base_dir=BASE_DIR)
         if not os.path.exists(media_root):
             os.makedirs(media_root)
         self.router.add_static('/media/', media_root, name='media')
