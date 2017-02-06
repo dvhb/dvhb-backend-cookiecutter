@@ -1,0 +1,4 @@
+# Configuration for tests
+
+fixtures:
+{% if cookiecutter.users_app == 'y' %}- users{% endif %}

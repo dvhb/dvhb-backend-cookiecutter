@@ -8,7 +8,7 @@ from dvhb_hybrid.config import load_conf, db_to_settings
 
 PROJECT_SLUG = '{{cookiecutter.project_slug.upper()}}'
 config = load_conf(
-    base_path=os.path.join(BASE_DIR, 'config', 'base.yml'),
+    base_path=os.path.join(BASE_DIR, 'config', 'base.yaml'),
     env_path=PROJECT_SLUG + '_CONF',
     system_prefix='/etc/{{cookiecutter.project_slug}}',
     env_prefix=PROJECT_SLUG,
