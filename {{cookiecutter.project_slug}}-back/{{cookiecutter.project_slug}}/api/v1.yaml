@@ -3,9 +3,9 @@ swagger: '2.0'
 basePath: /api/1
 
 info:
-  title: {{ cookiecutter.project_name }} API
+  title: {{ cookiecutter.project_name.upper() }} API
   version: '1.0'
-  description: API версии 1.0
+  description: API 1.0
 
 tags:
 - name: users
