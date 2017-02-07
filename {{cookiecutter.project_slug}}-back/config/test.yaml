@@ -1,4 +1,7 @@
 # Configuration for tests
+databases:
+  default:
+    database: test_{{cookiecutter.project_slug}}
 
 fixtures:
 {% if cookiecutter.users_app == 'y' %}- users{% endif %}

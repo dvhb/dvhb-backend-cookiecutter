@@ -3,13 +3,13 @@ from aiohttp.web_exceptions import HTTPUnauthorized
 
 
 @pytest.mark.django_db
-async def test_login_logout(make_api, user, helper):
+async def test_login_logout(make_api, user):
     api = await make_api(user)
     r, data = await api.login()
-    await helper.check_status(r)
+    await api.check_status(r)
 
     r, data = await api.logout()
-    await helper.check_status(r)
+    await api.check_status(r)
 
     r, data = await api.logout()
-    await helper.check_status(r, HTTPUnauthorized)
+    await api.check_status(r, HTTPUnauthorized)

@@ -1,10 +1,12 @@
 import os
 
+from dvhb_hybrid.config import load_conf, db_to_settings
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-from dvhb_hybrid.config import load_conf, db_to_settings
 
 PROJECT_SLUG = '{{cookiecutter.project_slug.upper()}}'
 config = load_conf(
