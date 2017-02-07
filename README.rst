@@ -1,3 +1,7 @@
+.. image:: https://travis-ci.org/dvhbru/dvhb-backend-cookiecutter.svg?branch=master
+     :target: https://travis-ci.org/dvhbru/dvhb-backend-cookiecutter?branch=master
+     :alt: Build Status
+
 Cookiecutter template to create django + asyncio
 
 Django is used for administration panel, DB models, migrations.
@@ -11,3 +15,4 @@ Install cookiecutter in you venv:
 Run it over template repository:
 
     $ cookiecutter git@github.com:dvhbru/dvhb-backend-cookiecutter.git
+    
