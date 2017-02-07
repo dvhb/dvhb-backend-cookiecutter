@@ -1,10 +1,5 @@
-import yaml
 from invoke import task
 from {{cookiecutter.project_slug}}.settings import config
-
-with open('config/test.yaml') as f:
-    test_config = yaml.load(f)
-    config.load_collection(test_config)
 
 
 @task

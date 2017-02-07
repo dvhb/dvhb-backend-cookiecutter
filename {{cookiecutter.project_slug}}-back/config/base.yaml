@@ -73,3 +73,7 @@ logging:
       level: DEBUG
       handlers: []
       propagate: true
+
+
+fixtures:
+{% if cookiecutter.users_app == 'y' %}- users{% endif %}
