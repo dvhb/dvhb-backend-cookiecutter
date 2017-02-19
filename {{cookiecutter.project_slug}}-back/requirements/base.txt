@@ -11,4 +11,4 @@ aioredis==0.2.9
 Django==1.10.5
 
 # DVHB
-git+https://github.com/dvhbru/dvhb-hybrid@0.0.3
+git+https://github.com/dvhbru/dvhb-hybrid@0.0.5
