@@ -118,9 +118,7 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-{% if cookiecutter.users_app == 'y' %}
-AUTH_USER_MODEL = 'users.User'
+{% if cookiecutter.users_app == 'y' %}AUTH_USER_MODEL = 'users.User'
 # Users application config
 INSTALLED_APPS += ('{{cookiecutter.project_slug}}.users.apps.UsersConfig',)
 {% endif %}

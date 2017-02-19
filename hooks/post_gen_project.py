@@ -16,5 +16,5 @@ if '{{ cookiecutter.users_app }}'.lower() != 'y':
 
 if '{{ cookiecutter.invoke_tasks }}'.lower() != 'y':
     os.remove(os.path.join(
-        PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}', 'tasks.py'
+        PROJECT_DIRECTORY, 'tasks.py'
     ))

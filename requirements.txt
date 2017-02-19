@@ -2,6 +2,7 @@ cookiecutter==1.5.1
 
 # Testing
 flake8==3.3.0
+pytest-flake8==0.8.1
 pyflakes==1.5.0
 sh==1.12.9
 pytest==3.0.6
