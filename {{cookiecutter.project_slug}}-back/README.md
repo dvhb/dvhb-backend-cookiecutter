@@ -1,6 +1,11 @@
 # {{ cookiecutter.project_name }}
 
-## Install dependencies
+## Dependencies
+* Python 3.6 or above
+* PostgreSQL 9.5 or above
+* Redis 2.8 or above
+
+## Prepare environment
 
 ```bash
 python3.6 -m venv venv
