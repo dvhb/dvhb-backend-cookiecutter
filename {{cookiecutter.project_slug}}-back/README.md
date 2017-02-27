@@ -8,12 +8,20 @@ python3.6 -m venv venv
 pip install -r requirements/base.txt
 ```
 
+## Prepare database on PostgreSQL
+
+```bash
+createdb {{cookiecutter.project_slug}}
+python manage.py makemigrations
+python manage.py migrate
+```
+
 ## Run asyncio API
 
 ```bash
 python -m {{cookiecutter.project_slug}}
 ```
-Go to http://localhost:8080/api/1/apidoc/
+Go to [http://localhost:8080/api/1/apidoc/](http://localhost:8080/api/1/apidoc/)
 
 ## Django Admin
 
@@ -21,7 +29,7 @@ Go to http://localhost:8080/api/1/apidoc/
 python manage.py runserver
 ```
 
-Go to http://localhost:8000/admin
+Go to [http://localhost:8000/admin](http://localhost:8000/admin)
 
 ## Run tests
 
