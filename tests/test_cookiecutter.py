@@ -3,14 +3,6 @@ import pytest
 import sh
 
 
-@pytest.fixture
-def context():
-    return {
-        'project_name': 'Project',
-        'project_slug': 'project',
-    }
-
-
 def check_project_result(result):
     """
     Method to common project baking verification
