@@ -21,7 +21,6 @@ class Application(web.Application):
     def __init__(self, *args, config=config, **kwargs):
         if 'router' not in kwargs:
             router = SwaggerRouter(search_dirs=[
-                '{{cookiecutter.project_slug}}/api',
                 '{{cookiecutter.project_slug}}'
             ], default_validate=True)
             kwargs['router'] = router
@@ -32,7 +31,7 @@ class Application(web.Application):
 
         super().__init__(**kwargs)
 
-        router.include('v1.yaml')
+        router.include('api.yaml')
         self['state'] = collections.Counter()
 
         aiohttp_jinja2.setup(
