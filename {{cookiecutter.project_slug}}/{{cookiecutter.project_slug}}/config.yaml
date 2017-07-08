@@ -4,6 +4,10 @@ app:
   debug: true
   cors: true
 
+applications:
+  - common
+{% if cookiecutter.users_app == 'y' %}  - users{% endif %}
+
 databases:
   default:
     database: *appname

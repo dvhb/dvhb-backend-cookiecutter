@@ -1,7 +1,7 @@
 import os
 
-from dvhb_hybrid.config import load_conf, db_to_settings
-
+from dvhb_hybrid.config import db_to_settings
+from aioworkers.config import load_conf
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,12 +9,12 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 PROJECT_SLUG = '{{cookiecutter.project_slug.upper()}}'
-config = load_conf(
-    base_path=os.path.join(BASE_DIR, 'config', 'base.yaml'),
-    env_path=PROJECT_SLUG + '_CONF',
-    system_prefix='/etc/{{cookiecutter.project_slug}}',
-    env_prefix=PROJECT_SLUG,
-)
+configs = [
+    os.path.abspath(os.path.join(PROJECT_DIR, 'config.yaml')),
+]
+if os.getenv('{{cookiecutter.project_slug.upper()}}_CONF'):
+    configs.append(os.path.abspath(os.getenv('{{cookiecutter.project_slug.upper()}}_CONF')))
+config = load_conf(*configs)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+INSTALLED_APPS += ['{{cookiecutter.project_slug}}.' + app for app in config.applications]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,7 +71,7 @@ WSGI_APPLICATION = '{{cookiecutter.project_slug}}.wsgi.application'
 
 # Database
 DATABASES = db_to_settings(
-    config.databases.config, BASE_DIR) or {
+    config.databases, BASE_DIR) or {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -95,9 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-EN'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -108,8 +110,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 
 STATICFILES_DIRS = (
@@ -118,7 +118,7 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
 {% if cookiecutter.users_app == 'y' %}# Users application config
 AUTH_USER_MODEL = 'users.User'
-INSTALLED_APPS += ('{{cookiecutter.project_slug}}.users.apps.UsersConfig',)
 {% endif %}
