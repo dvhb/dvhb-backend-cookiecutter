@@ -1,12 +1,14 @@
-# Asyncio
-aiohttp==1.2.0
-aiohttp-apiset==0.3.4
-aiohttp-jinja2==0.8.0
+# asyncio
+aioworkers==0.6.0
+aioworkers_redis==0.1.0
+aiohttp==2.2.3
+aiohttp-apiset==0.5.2.1
+aiohttp-jinja2==0.13.0
 aiopg==0.13.0
 aioredis==0.2.9
 
-# Django
-Django==1.10.5
+# django
+Django==1.11.1
 
 # DVHB
-git+https://github.com/dvhbru/dvhb-hybrid@0.0.5
+git+https://github.com/dvhbru/dvhb-hybrid@0.2.6
