@@ -6,3 +6,4 @@ htmlcov
 0*py
 
 venv/
+tests/baked/
