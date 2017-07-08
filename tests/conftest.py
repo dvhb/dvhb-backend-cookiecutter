@@ -4,7 +4,7 @@ import pytest
 from pytest_cookies import Cookies
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def cookies(request, _cookiecutter_config_file):
     template_dir = request.config.option.template
     py.path.local('tests/baked').remove()
