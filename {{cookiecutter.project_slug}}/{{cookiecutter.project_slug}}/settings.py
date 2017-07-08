@@ -94,7 +94,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+{% if cookiecutter.users_app == 'y' %}# Users
+AUTH_USER_MODEL = 'users.User'{% endif %}
 
 # Internationalization
 LANGUAGE_CODE = 'en-EN'
@@ -118,7 +119,3 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-{% if cookiecutter.users_app == 'y' %}# Users application config
-AUTH_USER_MODEL = 'users.User'
-{% endif %}

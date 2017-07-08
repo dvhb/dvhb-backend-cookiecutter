@@ -9,10 +9,10 @@ import jinja2
 import aioworkers.http
 from aiohttp_apiset.middlewares import jsonify
 
-from dvhb_hybrid.config import absdir, dirs
+from dvhb_hybrid.config import dirs
 from dvhb_hybrid.amodels import AppModels
 
-from .settings import config, BASE_DIR
+from .settings import BASE_DIR
 
 import {{cookiecutter.project_slug}}
 
