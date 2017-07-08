@@ -7,10 +7,10 @@ language: python
 python: 3.6
 
 script:
-    - tox
+    - pytest
 
 install:
-    - pip install tox
+    - pip install -r requirements.txt
 
 notifications:
   email:
