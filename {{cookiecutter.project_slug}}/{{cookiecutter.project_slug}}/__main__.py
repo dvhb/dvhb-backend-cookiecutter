@@ -2,7 +2,7 @@ import argparse
 
 from aiohttp import web
 
-from .app import Application
+from .web import Application
 
 
 def main():

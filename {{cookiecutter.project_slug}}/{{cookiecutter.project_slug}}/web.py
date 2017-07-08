@@ -1,54 +1,45 @@
 import collections
 import os
 
+import django
 import aiopg.sa
 import aioredis
 import aiohttp_jinja2
 import jinja2
-from aiohttp import web
-from aiohttp_apiset import SwaggerRouter
+import aioworkers.http
 from aiohttp_apiset.middlewares import jsonify
+
 from dvhb_hybrid.config import absdir, dirs
 from dvhb_hybrid.amodels import AppModels
 
 from .settings import config, BASE_DIR
 
 import {{cookiecutter.project_slug}}
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '{{cookiecutter.project_slug}}.settings')
+django.setup()
+
 AppModels.import_all_models_from_packages({{cookiecutter.project_slug}})
 
 
-class Application(web.Application):
-    def __init__(self, *args, config=config, **kwargs):
-        if 'router' not in kwargs:
-            router = SwaggerRouter(search_dirs=[
-                '{{cookiecutter.project_slug}}'
-            ], default_validate=True)
-            kwargs['router'] = router
-        self.config = config
+class Application(aioworkers.http.Application):
+    def __init__(self, **kwargs):
+        kwargs['debug'] = kwargs['config'].debug
+        from {{cookiecutter.project_slug}}.router import create_router
+        router = create_router()
 
-        middlewares = kwargs.setdefault('middlewares', [])
-        middlewares.append(jsonify)
+        super().__init__(router=router, **kwargs, middlewares=[jsonify])
 
-        super().__init__(**kwargs)
-
-        router.include('api.yaml')
         self['state'] = collections.Counter()
+
+        self.models = self.m = AppModels(self)
 
         aiohttp_jinja2.setup(
             self, loader=jinja2.FileSystemLoader(
                 dirs(self.config.path.templates, base_dir=BASE_DIR)),
         )
+
         cls = type(self)
-        static_root = absdir(config.path.static, base_dir=BASE_DIR)
-        if not os.path.exists(static_root):
-            os.makedirs(static_root)
-        self.router.add_static('/static/', static_root, name='static')
-
-        media_root = absdir(config.path.media, base_dir=BASE_DIR)
-        if not os.path.exists(media_root):
-            os.makedirs(media_root)
-        self.router.add_static('/media/', media_root, name='media')
-
         self.on_startup.append(cls.startup_database)
         self.on_startup.append(cls.startup_redis)
         self.on_cleanup.append(cls.cleanup_database)
