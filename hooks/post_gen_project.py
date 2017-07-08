@@ -13,8 +13,3 @@ def remove_users_files():
 
 if '{{ cookiecutter.users_app }}'.lower() != 'y':
     remove_users_files()
-
-if '{{ cookiecutter.invoke_tasks }}'.lower() != 'y':
-    os.remove(os.path.join(
-        PROJECT_DIRECTORY, 'tasks.py'
-    ))

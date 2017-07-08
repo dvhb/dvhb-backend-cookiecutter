@@ -1,6 +1,5 @@
 {
     "project_name": "Project Name",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
-    "users_app": "y",
-    "invoke_tasks": "y"
+    "users_app": "y"
 }

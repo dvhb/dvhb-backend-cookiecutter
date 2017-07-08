@@ -16,9 +16,7 @@ pip install -r requirements/base.txt
 ## Prepare database on PostgreSQL
 
 ```bash
-createdb {{cookiecutter.project_slug}}
-python manage.py makemigrations
-python manage.py migrate
+python manage.py initdb
 ```
 
 ## Run asyncio API
