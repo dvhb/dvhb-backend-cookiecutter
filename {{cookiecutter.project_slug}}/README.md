@@ -22,7 +22,7 @@ python manage.py initdb
 ## Run asyncio API
 
 ```bash
-python -m {{cookiecutter.project_slug}}
+python -m aioworkers.cli -c {{cookiecutter.project_slug}}/config.yaml -g --logging info
 ```
 Go to [http://localhost:8080/api/1/apidoc/](http://localhost:8080/api/1/apidoc/)
 

@@ -66,7 +66,7 @@ class Application(aioworkers.http.Application):
         await self['sessions'].clear()
 
     async def startup_database(self):
-        dbparams = self.config.databases.default.config
+        dbparams = self.config.databases.default
         self['db'] = await aiopg.sa.create_engine(**dbparams)
         self.models = self.m = AppModels(self)
 

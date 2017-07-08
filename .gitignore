@@ -2,7 +2,6 @@
 __pycache__
 .coverage
 .cache
-.tox/
 htmlcov
 0*py
 
