@@ -1,0 +1,16 @@
+FROM python:3.6
+
+ARG APP_DIR=/app
+WORKDIR $APP_DIR
+
+COPY requirements/base.txt $APP_DIR/
+RUN pip install -r base.txt
+
+COPY testapp $APP_DIR/testapp
+COPY manage.py docker-entrypoint.sh config.yaml $APP_DIR/
+
+RUN apt-get update && apt-get -y install postgresql-client
+RUN chmod +x ./docker-entrypoint.sh
+ENV TESTAPP_CONF=config.yaml
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
