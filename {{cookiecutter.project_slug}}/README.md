@@ -37,5 +37,5 @@ Go to [http://localhost:8000/admin](http://localhost:8000/admin)
 ## Run tests
 
 ```bash
-$ {{ cookiecutter.project_name.upper() }}_CONF=conf/test.yaml pytest
+pytest
 ```
