@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import pytest
 import sh
 
@@ -28,5 +28,5 @@ def test_disabled_users_app(cookies, context):
     check_project_result(result)
 
     # Check that users app not added to application
-    users_app_folder = os.path.join(result.project, context['project_slug'], 'users')
-    assert not os.path.isdir(users_app_folder)
+    path = Path(result.project)
+    assert not (path / context['project_slug'] / 'users').exists()

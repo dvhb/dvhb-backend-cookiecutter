@@ -1,15 +1,8 @@
-import os
 import shutil
+from pathlib import Path
 
+PROJECT_PATH = Path.cwd()
 
-PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
+if '{{ cookiecutter.users_app }}'.lower() == 'n':
+    shutil.rmtree(str(PROJECT_PATH / '{{ cookiecutter.project_slug }}' / 'users'))
 
-
-def remove_users_files():
-    shutil.rmtree(os.path.join(
-        PROJECT_DIRECTORY, '{{ cookiecutter.project_slug }}', 'users'
-    ))
-
-
-if '{{ cookiecutter.users_app }}'.lower() != 'y':
-    remove_users_files()
