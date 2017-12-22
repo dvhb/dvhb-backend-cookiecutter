@@ -5,5 +5,8 @@ __pycache__
 htmlcov
 0*py
 
+.idea/
+
+.venv/
 venv/
 tests/baked/
