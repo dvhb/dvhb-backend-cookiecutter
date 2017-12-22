@@ -1,0 +1,32 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[requires]
+
+python_version = '3.6'
+
+
+[packages]
+django = "==2.0"
+"psycopg2" = "*"
+
+aioworkers = "*"
+aioworkers_redis = "*"
+aiohttp = "*"
+aiohttp-apiset = "*"
+aiopg = "*"
+aioredis = "*"
+
+[dev-packages]
+
+pytest = "*"
+pytest-django = "*"
+pytest-pep8 = "*"
+pytest-flake8 = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+pytest-env = "*"
