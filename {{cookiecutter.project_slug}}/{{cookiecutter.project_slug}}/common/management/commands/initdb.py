@@ -13,7 +13,7 @@ class Command(BaseCommand):
         db_name = config['databases']['default']['database']
         subprocess.run(['dropdb', '--if-exists', db_name], stdout=self.stdout)
         subprocess.run(['createdb', db_name], stdout=self.stdout)
-        subprocess.run(['rm', '-rf', 'lovat/*/migrations/0*.py'], stdout=self.stdout)
+        subprocess.run(['rm', '-rf', '{{cookiecutter.project_slug}}/*/migrations/0*.py'], stdout=self.stdout)
         call_command('makemigrations')
         call_command('migrate')
         call_command('loaddata', *config.fixtures)
