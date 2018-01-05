@@ -9,4 +9,4 @@ htmlcov
 
 .venv/
 venv/
-tests/baked/
+tests/projects/
