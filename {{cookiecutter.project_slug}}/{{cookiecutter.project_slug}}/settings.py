@@ -94,8 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-{% if cookiecutter.users_app == 'y' %}# Users
-AUTH_USER_MODEL = 'users.User'{% endif %}
 
 # Internationalization
 LANGUAGE_CODE = 'en-EN'

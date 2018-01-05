@@ -8,7 +8,6 @@ Features
 --------
 
 * Based on Python 3.6.
-* Adds users application with build-in login/logout api methods.
 * YAML configs for application.
 * Uses aiohttp-apiset to create REST API based on swagger specification.
 

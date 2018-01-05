@@ -6,7 +6,6 @@ app:
 
 applications:
   - common
-{% if cookiecutter.users_app == 'y' %}  - users{% endif %}
 
 databases:
   default:
@@ -33,6 +32,3 @@ path:
   - templates
   static: ../static
   media: ../media
-
-fixtures:
-{% if cookiecutter.users_app == 'y' %}- users{% endif %}
