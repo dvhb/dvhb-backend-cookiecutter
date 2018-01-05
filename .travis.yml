@@ -15,7 +15,8 @@ script:
     - pytest
 
 install:
-    - pip install -r requirements.txt
+    - pip install pipenv
+    - pipenv install --dev --system
 
 notifications:
   email:
