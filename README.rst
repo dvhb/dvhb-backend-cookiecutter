@@ -17,4 +17,4 @@ Install cookiecutter in you venv:
 
 Run it over template repository:
 
-    $ cookiecutter git@github.com:dvhbru/dvhb-backend-cookiecutter.git
+    $ cookiecutter git@github.com:dvhb/dvhb-backend-cookiecutter.git
