@@ -1,3 +1,4 @@
+RELEASE=latest
 PACKAGE={{cookiecutter.project_slug}}
 VERSION=$(shell git describe --always --tags)
 
@@ -8,7 +9,7 @@ all:
 docker: dist/$(PACKAGE)-$(VERSION).tar.gz
 	cp $< docker/{{cookiecutter.project_slug}}.tar.gz
 	cp Pipfile* docker/
-	sudo docker build docker
+	sudo docker build docker -t {{cookiecutter.project_slug}}:$(RELEASE)
 
 {{cookiecutter.project_slug}}/version.py:
 	echo "VERSION = '$(VERSION)'" > $@
