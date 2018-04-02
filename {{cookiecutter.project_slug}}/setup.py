@@ -16,4 +16,5 @@ setup(
     packages=['{{cookiecutter.project_slug}}'],
     python_requires='>=3.5.3',
     include_package_data=True,
+    scripts=['manage.py'],
 )
