@@ -22,4 +22,5 @@ ADD Pipfile.lock /project/
 RUN pipenv install --system --deploy
 
 COPY {{cookiecutter.project_slug}}.tar.gz /project/
-RUN pip install {{cookiecutter.project_slug}}.tar.gz
+RUN pip install {{cookiecutter.project_slug}}.tar.gz && \
+    django-admin collectstatic -l
