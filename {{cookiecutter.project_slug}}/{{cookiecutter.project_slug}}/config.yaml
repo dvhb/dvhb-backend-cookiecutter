@@ -1,8 +1,20 @@
 app:
   name: &appname {{cookiecutter.project_slug}}
-  env: dev
   debug: true
-  cors: true
+  router:
+    search_in_modules:
+      - {{cookiecutter.project_slug}}
+    cors:
+      domains: '*'
+  resources:
+    api_1:
+      prefix: /api/1
+      /:
+        include: api.yaml
+  cleanup_ctx:
+    pg: dvhb_hybrid.config.cleanup_ctx_databases
+    redis: dvhb_hybrid.config.cleanup_ctx_redis
+    redis-sessions: dvhb_hybrid.config.cleanup_ctx_redis_sessions
 
 applications:
   - common
@@ -13,19 +25,21 @@ databases:
 
 redis:
   default:
-    host: 127.0.0.1
-    port: 6379
-    db: 0
     prefix: *appname
-    minsize: 5
-    maxsize: 10
+    connection:
+      host: 127.0.0.1
+      port: 6379
+      db: 0
+      minsize: 5
+      maxsize: 10
   sessions:
-    host: 127.0.0.1
-    port: 6379
-    db: 1
     prefix: *appname
-    minsize: 5
-    maxsize: 10
+    connection:
+      host: 127.0.0.1
+      port: 6379
+      db: 1
+      minsize: 5
+      maxsize: 10
 
 path:
   templates:
