@@ -11,10 +11,13 @@ django = "*"
 "psycopg2-binary" = "*"
 
 aioworkers = "*"
-aioworkers-redis = "*"
 aioworkers-aiohttp = "*"
-aiopg = "*"
-dvhb-hybrid = {git = "https://github.com/dvhb/dvhb-hybrid", ref = "88c5757"}
+aiohttp-wsgi = "*"
+aioworkers-redis = "*"
+asyncpgsa = "*"
+dvhb-hybrid = {git = "https://github.com/dvhb/dvhb-hybrid", ref = "d7e63a4"}
+
+raven-aiohttp = "*"
 
 [dev-packages]
 pytest = "*"
