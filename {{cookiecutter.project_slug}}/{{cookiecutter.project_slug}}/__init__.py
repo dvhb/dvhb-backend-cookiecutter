@@ -1,7 +1,5 @@
+import os
 from pathlib import Path
-
-from . import wsgi  # noqa
-from aioworkers.core.config import Config
 
 try:
     from .version import VERSION as __version__
@@ -14,7 +12,6 @@ BASE = Path(__file__).parent
 configs = (
     BASE / 'config.yaml',
 )
-
-
-def get_config():
-    return Config().load(*configs)
+for i in ('TEST_CONF', '{{ cookiecutter.project_name.upper() }}_CONF'):
+    if os.getenv(i):
+        configs += Path(os.getenv(i)).absolute(),

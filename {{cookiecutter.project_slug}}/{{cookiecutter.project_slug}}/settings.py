@@ -1,7 +1,9 @@
 import os
 
 from dvhb_hybrid.config import db_to_settings
-from aioworkers.config import load_conf
+from aioworkers import cli
+
+from . import configs
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,12 +11,9 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 PROJECT_SLUG = '{{cookiecutter.project_slug.upper()}}'
-configs = [
-    os.path.abspath(os.path.join(PROJECT_DIR, 'config.yaml')),
-]
-if os.getenv('{{cookiecutter.project_slug.upper()}}_CONF'):
-    configs.append(os.path.abspath(os.getenv('{{cookiecutter.project_slug.upper()}}_CONF')))
-config = load_conf(*configs)
+cli.context.config.load_plugins(force=False)
+cli.context.config.load(*configs)
+config = cli.context.config
 
 
 # SECURITY WARNING: keep the secret key used in production secret!

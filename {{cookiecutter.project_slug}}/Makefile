@@ -2,9 +2,15 @@ RELEASE=latest
 PACKAGE={{cookiecutter.project_slug}}
 VERSION=$(shell git describe --always --tags)
 
-all:
+PYTHON=/opt/python3.6/bin/python3
+ENVDIR=./env
 
-.PHONY: all docker
+all:
+	$(PYTHON) -m venv $(ENVDIR)
+	$(ENVDIR)/bin/pip install -U pip pipenv
+	$(ENVDIR)/bin/pipenv install -d
+
+.PHONY: all docker {{cookiecutter.project_slug}}/version.py
 
 docker: dist/$(PACKAGE)-$(VERSION).tar.gz
 	cp $< docker/{{cookiecutter.project_slug}}.tar.gz
@@ -20,7 +26,7 @@ dist/$(PACKAGE)-%.tar.gz: {{cookiecutter.project_slug}}/version.py
 clean:
 	rm -fr dist
 
-recut:
+recut: ../{{cookiecutter.project_slug}}
 	cd .. \
 	&& rm -fr {{cookiecutter.project_slug}} \
 	&& cookiecutter . \

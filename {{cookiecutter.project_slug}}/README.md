@@ -2,15 +2,16 @@
 
 ## Dependencies
 * Python 3.6 or above
-* PostgreSQL 9.5 or above
-* Redis 2.8 or above
+* PostgreSQL 10 or above
+* Redis 3 or above
 
-## Prepare environment
+## Prepare dev environment
 
 ```bash
-python3.6 -m venv venv
-. venv/bin/activate
-pip install -r requirements/base.txt
+python3.6 -m venv env
+. env/bin/activate
+pip install -U pip pipenv
+pipenv install -d
 ```
 
 ## Prepare database on PostgreSQL
@@ -19,20 +20,16 @@ pip install -r requirements/base.txt
 python manage.py initdb
 ```
 
-## Run asyncio API
+## Run backend
 
 ```bash
-python -m aioworkers.cli -c {{cookiecutter.project_slug}}/config.yaml -g --logging info
+aioworkers {{cookiecutter.project_slug}} -g --logging info
 ```
-Go to [http://localhost:8080/api/1/apidoc/](http://localhost:8080/api/1/apidoc/)
+Go to [http://localhost:8080/apidoc/](http://localhost:8080/apidoc/)
 
 ## Django Admin
 
-```bash
-python manage.py runserver
-```
-
-Go to [http://localhost:8000/admin](http://localhost:8000/admin)
+Go to [http://localhost:8080/admin](http://localhost:8080/admin)
 
 ## Run tests
 

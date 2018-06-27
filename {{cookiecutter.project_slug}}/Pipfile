@@ -9,15 +9,14 @@ python_version = '3.6'
 [packages]
 django = "*"
 "psycopg2-binary" = "*"
-
 aioworkers = "*"
 aioworkers-aiohttp = "*"
 aiohttp-wsgi = "*"
 aioworkers-redis = "*"
 asyncpgsa = "*"
-dvhb-hybrid = {git = "https://github.com/dvhb/dvhb-hybrid", ref = "d7e63a4"}
-
 raven-aiohttp = "*"
+"aiohttp-jinja2" = "*"
+dvhb-hybrid = {git = "https://github.com/dvhb/dvhb-hybrid.git", ref = "asyncpg"}
 
 [dev-packages]
 pytest = "*"
@@ -28,3 +27,6 @@ pytest-flake8 = "*"
 pytest-cov = "*"
 pytest-mock = "*"
 pytest-env = "*"
+ipdb = "*"
+mypy = "*"
+pytest-mypy = "*"

@@ -1,6 +1,7 @@
 app:
   name: &appname {{cookiecutter.project_slug}}
   debug: true
+  cls: {{cookiecutter.project_slug}}.web.Application
   router:
     search_in_modules:
       - {{cookiecutter.project_slug}}
