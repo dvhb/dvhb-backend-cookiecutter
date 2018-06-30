@@ -22,7 +22,7 @@ SECRET_KEY = '*k!sns@80-v%_9!#bk$rz0ci4kmh%1@l2bo#s^rlzr6(z2v-ve'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*'
 
 
 # Application definition
@@ -108,11 +108,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+if 'STATIC_ROOT' in os.environ:
+    STATIC_ROOT = os.environ['STATIC_ROOT']
+else:
+    STATIC_ROOT = config.path.static
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+if 'MEDIA_ROOT' in os.environ:
+    MEDIA_ROOT = os.environ['MEDIA_ROOT']
+else:
+    MEDIA_ROOT = config.path.media

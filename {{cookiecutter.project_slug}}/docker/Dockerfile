@@ -13,13 +13,19 @@ RUN apk add --update \
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8
-RUN pip install pipenv
+RUN pip install -U pip pipenv
 
-ENV DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.settings
+ENV DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.settings \
+    STATIC_ROOT=/static \
+    MEDIA_ROOT=/media
 WORKDIR /project
 ADD Pipfile /project/
 ADD Pipfile.lock /project/
 RUN pipenv install --system --deploy
+
+ENV DJANGO_SETTINGS_MODULE=servier.settings \
+    STATIC_ROOT=/static \
+    MEDIA_ROOT=/media
 
 COPY {{cookiecutter.project_slug}}.tar.gz /project/
 RUN pip install {{cookiecutter.project_slug}}.tar.gz && \
