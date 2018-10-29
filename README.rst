@@ -1,8 +1,8 @@
-.. image:: https://travis-ci.org/dvhbru/dvhb-backend-cookiecutter.svg?branch=master
-     :target: https://travis-ci.org/dvhbru/dvhb-backend-cookiecutter?branch=master
+.. image:: https://travis-ci.org/dvhb/dvhb-backend-cookiecutter.svg?branch=master
+     :target: https://travis-ci.org/dvhb/dvhb-backend-cookiecutter?branch=master
      :alt: Build Status
 
-Cookiecutter template to create projects based on dvhb-hybrid (https://github.com/dvhbru/dvhb-hybrid).
+Cookiecutter template to create projects based on dvhb-hybrid (https://github.com/dvhb/dvhb-hybrid).
 
 Features
 --------
