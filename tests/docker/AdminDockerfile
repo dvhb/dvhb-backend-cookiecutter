@@ -3,8 +3,9 @@ FROM python:3.6
 ARG APP_DIR=/app
 WORKDIR $APP_DIR
 
-COPY requirements/base.txt $APP_DIR/
-RUN pip install -r base.txt
+RUN pip install -U pip pipenv
+COPY Pipfile $APP_DIR/
+RUN pipenv install --system
 
 COPY testapp $APP_DIR/testapp
 COPY manage.py docker-entrypoint.sh config.yaml $APP_DIR/
