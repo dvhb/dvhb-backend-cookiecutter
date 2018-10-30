@@ -15,7 +15,7 @@ script:
     - pytest
 
 install:
-    - pip install pipenv
+    - pip install -U pip pipenv
     - pipenv install --dev --system --skip-lock
 
 notifications:
